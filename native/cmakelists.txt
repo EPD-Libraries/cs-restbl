@@ -16,6 +16,7 @@ enable_testing()
 
 add_library(cs_restbl SHARED
     ./src/include/cs_restbl.h
+    ./src/cs_restbl.cpp
 )
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/restbl)
