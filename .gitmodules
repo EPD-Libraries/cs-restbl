@@ -1,0 +1,6 @@
+[submodule "lib/restbl"]
+	path = lib/restbl
+	url = https://github.com/Nintendo-EPD/restbl
+[submodule "native/lib/restble"]
+	path = native/lib/restble
+	url = https://github.com/Nintendo-EPD/restbl
