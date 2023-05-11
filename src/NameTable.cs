@@ -1,10 +1,11 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace CsRestbl;
 
-public partial class NameTable : SafeHandleZeroOrMinusOneIsInvalid, IEnumerable<KeyValuePair<string, uint>>, IEnumerable
+public unsafe partial class NameTable : SafeHandleZeroOrMinusOneIsInvalid, IEnumerable<KeyValuePair<string, uint>>, IEnumerable
 {
     [LibraryImport("cs_restbl")]
     private static partial int NameTableCount(NameTable table);
@@ -41,21 +42,17 @@ public partial class NameTable : SafeHandleZeroOrMinusOneIsInvalid, IEnumerable<
     public void Clear() => NameTableClear(this);
 
     public IEnumerator<KeyValuePair<string, uint>> GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
+        => new Enumerable(this);
 
     IEnumerator IEnumerable.GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
+        => new Enumerable(this);
 
     [LibraryImport("cs_restbl")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool NameTableAdvance(NameTable table, IntPtr iterator, out IntPtr next);
 
-    [LibraryImport("cs_restbl", StringMarshalling = StringMarshalling.Utf8)]
-    private static partial void NameTableCurrent(IntPtr iterator, out string name, out uint size);
+    [LibraryImport("cs_restbl")]
+    private unsafe static partial void NameTableCurrent(IntPtr iterator, out byte* name_ptr, out uint size);
 
     private struct Enumerable : IEnumerator<KeyValuePair<string, uint>>, IEnumerator
     {
@@ -70,8 +67,8 @@ public partial class NameTable : SafeHandleZeroOrMinusOneIsInvalid, IEnumerable<
         object IEnumerator.Current => Current;
         public KeyValuePair<string, uint> Current {
             get {
-                NameTableCurrent(_iterator, out string name, out uint size);
-                return new(name, size);
+                NameTableCurrent(_iterator, out byte* namePtr, out uint size);
+                return new(Utf8StringMarshaller.ConvertToManaged(namePtr)!, size);
             }
         }
 
