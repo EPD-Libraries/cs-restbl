@@ -1,0 +1,74 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net7.0": []
+  },
+  "packageFolders": {
+    "D:\\Programs\\NuGet\\": {},
+    "F:\\Programs\\Syncfusion\\EssentialStudio\\WPF\\20.4.0.38\\ToolboxNuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\VsCode\\Libraries\\Nintendo-EPD\\cs-restbl\\src\\CsRestbl.csproj",
+      "projectName": "CsRestbl",
+      "projectPath": "F:\\VsCode\\Libraries\\Nintendo-EPD\\cs-restbl\\src\\CsRestbl.csproj",
+      "packagesPath": "D:\\Programs\\NuGet\\",
+      "outputPath": "F:\\VsCode\\Libraries\\Nintendo-EPD\\cs-restbl\\src\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "F:\\Programs\\Syncfusion\\EssentialStudio\\WPF\\20.4.0.38\\ToolboxNuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\ArchLeaders\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.emzi0767.com/api/v3/index.json": {},
+        "https://pkgs.dev.azure.com/AvaloniaUI/AvaloniaUI/_packaging/avalonia-nightly/nuget/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
