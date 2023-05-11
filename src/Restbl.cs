@@ -13,10 +13,19 @@ public unsafe partial class Restbl : SafeHandleZeroOrMinusOneIsInvalid
     private static partial DataMarshal ToBinary(Restbl handle);
 
     [LibraryImport("cs_restbl")]
+    private static partial CrcTable GetCrcTable(Restbl handle);
+
+    [LibraryImport("cs_restbl")]
+    private static partial NameTable GetNameTable(Restbl handle);
+
+    [LibraryImport("cs_restbl")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool Free(IntPtr handle);
 
     public Restbl() : base(true) { }
+
+    public CrcTable CrcTable => GetCrcTable(this);
+    public NameTable NameTable => GetNameTable(this);
 
     public static Restbl FromBinary(ReadOnlySpan<byte> data)
     {

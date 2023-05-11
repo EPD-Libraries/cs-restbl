@@ -15,8 +15,16 @@ include(CTest)
 enable_testing()
 
 add_library(cs_restbl SHARED
+    ./src/include/native.h
+
     ./src/include/cs_restbl.h
     ./src/cs_restbl.cpp
+
+    ./src/include/cs_name_table.h
+    ./src/cs_name_table.cpp
+
+    ./src/include/cs_crc_table.h
+    ./src/cs_crc_table.cpp
 )
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/restbl)
