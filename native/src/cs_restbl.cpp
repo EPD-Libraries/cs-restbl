@@ -1,6 +1,6 @@
 #include "include/cs_restbl.h"
 
-restbl::RESTBL* FromBinary(u8* src, int src_len) {
+restbl::RESTBL* FromBinary(u8* src, size_t src_len) {
   return new auto{restbl::RESTBL{{src, src_len}}};
 }
 
