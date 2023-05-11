@@ -1,9 +1,3 @@
-[submodule "lib/restbl"]
-	path = lib/restbl
-	url = https://github.com/Nintendo-EPD/restbl
-[submodule "native/lib/restble"]
-	path = native/lib/restble
-	url = https://github.com/Nintendo-EPD/restbl
 [submodule "lib/Native.IO"]
 	path = lib/Native.IO
 	url = https://github.com/ArchLeaders/Native.IO
