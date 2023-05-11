@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CsRestbl.csproj" />
+    <ProjectReference Include="..\src\CsRestbl\CsRestbl.csproj" />
   </ItemGroup>
 
   <ItemGroup>
