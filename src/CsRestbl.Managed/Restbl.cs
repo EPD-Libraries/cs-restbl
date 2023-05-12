@@ -1,12 +1,13 @@
 ﻿using System.Buffers.Binary;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 namespace CsRestbl.Managed;
 
 public class Restbl
 {
-    public static Restbl FromBinary(ReadOnlySpan<byte> data)
+    public unsafe static Restbl FromBinary(ReadOnlySpan<byte> data)
     {
         if (!data[0..6].SequenceEqual("RESTBL"u8)) {
             throw new InvalidDataException("Invalid RESTBL magic");
@@ -30,10 +31,13 @@ public class Restbl
         }
 
         for (int i = 0; i < nameTableCount; i++) {
-            restbl.NameTable.Add(new(
-                Encoding.UTF8.GetString(data[offset..(offset += 160)]),
-                BinaryPrimitives.ReadUInt32LittleEndian(data[offset..(offset += 4)])
-            ));;
+            ReadOnlySpan<byte> raw = data[offset..(offset += 160)];
+            fixed (byte* ptr = raw) {
+                restbl.NameTable.Add(new(
+                    Utf8StringMarshaller.ConvertToManaged(ptr)!,
+                    BinaryPrimitives.ReadUInt32LittleEndian(data[offset..(offset += 4)])
+                ));;
+            }
         }
 
         return restbl;
@@ -69,7 +73,7 @@ public class Restbl
         }
 
         foreach (var entry in NameTable.OrderBy(x => x.Name)) {
-            ms.Write(Encoding.UTF8.GetBytes(entry.Name));
+            ms.Write(Encoding.UTF8.GetBytes(entry.Name.PadRight(160, '\0')));
 
             BinaryPrimitives.WriteUInt32LittleEndian(dword, entry.Size);
             ms.Write(dword);
