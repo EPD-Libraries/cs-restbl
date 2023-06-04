@@ -14,8 +14,8 @@ public class Restbl
         }
 
         Restbl restbl = new() {
-            Unknown1 = BinaryPrimitives.ReadUInt32LittleEndian(data[6..10]),
-            Unknown2 = BinaryPrimitives.ReadUInt32LittleEndian(data[10..14])
+            Version = BinaryPrimitives.ReadInt32LittleEndian(data[6..10]),
+            StringBlockSize = BinaryPrimitives.ReadInt32LittleEndian(data[10..14])
         };
 
         uint crcTableCount = BinaryPrimitives.ReadUInt32LittleEndian(data[14..18]);
@@ -52,10 +52,10 @@ public class Restbl
 
         ms.Write("RESTBL"u8);
 
-        BinaryPrimitives.WriteUInt32LittleEndian(dword, Unknown1);
+        BinaryPrimitives.WriteInt32LittleEndian(dword, Version);
         ms.Write(dword);
 
-        BinaryPrimitives.WriteUInt32LittleEndian(dword, Unknown2);
+        BinaryPrimitives.WriteInt32LittleEndian(dword, StringBlockSize);
         ms.Write(dword);
 
         BinaryPrimitives.WriteInt32LittleEndian(dword, CrcTable.Count);
@@ -73,7 +73,7 @@ public class Restbl
         }
 
         foreach (var entry in NameTable.OrderBy(x => x.Name)) {
-            ms.Write(Encoding.UTF8.GetBytes(entry.Name.PadRight(160, '\0')));
+            ms.Write(Encoding.UTF8.GetBytes(entry.Name.PadRight(StringBlockSize, '\0')));
 
             BinaryPrimitives.WriteUInt32LittleEndian(dword, entry.Size);
             ms.Write(dword);
@@ -82,8 +82,8 @@ public class Restbl
         return src;
     }
 
-    public uint Unknown1 { get; set; }
-    public uint Unknown2 { get; set; }
+    public int Version { get; set; }
+    public int StringBlockSize { get; set; }
 
     public ObservableCollection<CrcEntry> CrcTable { get; set; } = new();
     public ObservableCollection<NameEntry> NameTable { get; set; } = new();
