@@ -30,8 +30,6 @@ public unsafe partial class NameTable : SafeHandleZeroOrMinusOneIsInvalid, IEnum
 
     public int Count => NameTableCount(this);
 
-    public object Current { get; }
-
     public uint this[string name] {
         get => NameTableGet(this, name);
         set => NameTableSet(this, name, value);
