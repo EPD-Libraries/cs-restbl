@@ -38,7 +38,7 @@ public partial class CrcTable : SafeHandleZeroOrMinusOneIsInvalid, IEnumerable<K
     public void Remove(uint hash) => CrcTableRemove(this, hash);
     public void Clear() => CrcTableClear(this);
 
-    public IEnumerator GetEnumerator()
+    IEnumerator IEnumerable.GetEnumerator()
         => new Enumerable(this);
 
     IEnumerator<KeyValuePair<uint, uint>> IEnumerable<KeyValuePair<uint, uint>>.GetEnumerator()
