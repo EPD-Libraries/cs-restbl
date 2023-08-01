@@ -9,8 +9,8 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="..\..\native\build\cs_restbl.dll" Link="Lib\cs_restbl.dll" Condition="Exists('..\..\native\build\cs_restbl.dll')" />
-		<EmbeddedResource Include="..\..\native\build\linux\cs_restbl.so" Link="Lib\cs_restbl.so" Condition="Exists('..\..\native\build\linux\cs_restbl.so')" />
-		<EmbeddedResource Include="..\..\native\build\macos\cs_restbl.dylib" Link="Lib\cs_restbl.dylib" Condition="Exists('..\..\native\build\macos\cs_restbl.dylib')" />
+		<EmbeddedResource Include="..\..\native\build\cs_restbl.so" Link="Lib\cs_restbl.so" Condition="Exists('..\..\native\build\cs_restbl.so')" />
+		<EmbeddedResource Include="..\..\native\build\cs_restbl.dylib" Link="Lib\cs_restbl.dylib" Condition="Exists('..\..\native\build\cs_restbl.dylib')" />
 	</ItemGroup>
 
 	<ItemGroup>
