@@ -16,7 +16,13 @@ public unsafe partial class Restbl : SafeHandleZeroOrMinusOneIsInvalid
     private static partial CrcTable GetCrcTable(Restbl handle);
 
     [LibraryImport("cs_restbl")]
+    private static partial CrcTable SetCrcTable(Restbl handle, CrcTable table);
+
+    [LibraryImport("cs_restbl")]
     private static partial NameTable GetNameTable(Restbl handle);
+
+    [LibraryImport("cs_restbl")]
+    private static partial NameTable SetNameTable(Restbl handle, NameTable table);
 
     [LibraryImport("cs_restbl")]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -24,8 +30,15 @@ public unsafe partial class Restbl : SafeHandleZeroOrMinusOneIsInvalid
 
     public Restbl() : base(true) { }
 
-    public CrcTable CrcTable => GetCrcTable(this);
-    public NameTable NameTable => GetNameTable(this);
+    public CrcTable CrcTable {
+        get => GetCrcTable(this);
+        set => SetCrcTable(this, value);
+    }
+
+    public NameTable NameTable {
+        get => GetNameTable(this);
+        set => SetNameTable(this, value);
+    }
 
     public static Restbl FromBinary(ReadOnlySpan<byte> data)
     {
