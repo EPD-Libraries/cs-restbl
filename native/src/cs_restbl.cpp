@@ -12,8 +12,16 @@ restbl::Table<u32>* GetCrcTable(restbl::RESTBL* handle) {
   return &handle->m_crc_table;
 }
 
+void SetCrcTable(restbl::RESTBL* handle, restbl::Table<u32>* table) {
+  handle->m_crc_table = *table;
+}
+
 restbl::Table<std::string>* GetNameTable(restbl::RESTBL* handle) {
   return &handle->m_name_table;
+}
+
+void SetNameTable(restbl::RESTBL* handle, restbl::Table<std::string>* table) {
+  handle->m_name_table = *table;
 }
 
 bool Free(restbl::RESTBL* handle) {
