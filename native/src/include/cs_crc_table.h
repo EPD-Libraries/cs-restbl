@@ -16,5 +16,5 @@ EXP void CrcTableClear(Table<u32>* table);
 
 //
 // Iterator
-EXP void CrcTableCurrent(Table<u32>::iterator* it, const u32* hash, u32* size);
 EXP bool CrcTableAdvance(Table<u32>* table, Table<u32>::iterator* iterator, Table<u32>::iterator** next);
+EXP void CrcTableCurrent(Table<u32>::iterator* iterator, u32* hash, u32* size);
